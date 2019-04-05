@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class MyHashSet<K> {
 	private static final int INITIAL_SIZE = 10; // Die initiale Groesse der HashTabelle
-	private static final int THRESHHOLD   =  2; // Der Wert ab welchem die HashTabelle vergrößert werden soll
+	private static final int THRESHHOLD   =  2; // Der Wert ab welchem die HashTabelle vergroessert werden soll
 	private static final int FACTOR       =  2; // Der Factor um den die HashTabelle erweitert werden soll
 
 	private ArrayList<K>[] data; // Die HashTabelle
@@ -32,7 +32,7 @@ public class MyHashSet<K> {
 
 	/**
 	 * Diese Methode fuegt dem Set ein weiteres Element hinzu. Sollte die Anzahl der Elemente geteilt
-	 * durch die Anzahl der Listen größer als 2 sein, wird das Set dynamisch erweitert. 
+	 * durch die Anzahl der Listen groesser als 2 sein, wird das Set dynamisch erweitert. 
 	 * @param element Das Element welches hinzugefuegt werden soll.
 	 * @return {@code true} Wenn das Element bereits existriert, sonst {@code false}
 	 */
@@ -41,7 +41,7 @@ public class MyHashSet<K> {
 			return true;
 		}
 
-		// Prüfen ob erweitert werden muss
+		// Pruefen ob erweitert werden muss
 		if((double) elements / data.length > THRESHHOLD) {
 			doubleSize();
 		}
@@ -68,7 +68,7 @@ public class MyHashSet<K> {
 
 	/**
 	 * Diese Methode prueft ob ein Element in dem aktuellen HashSet vorhanden ist.
-	 * @param element Das Element für welches geprüft werden soll ob es bereits vorhanden ist.
+	 * @param element Das Element fuer welches geprueft werden soll ob es bereits vorhanden ist.
 	 * @return {@code true} Wenn das Element existriert, sonst {@code false}
 	 */
 	public boolean contains(K element) {
@@ -99,7 +99,7 @@ public class MyHashSet<K> {
 
 	/**
 	 * Diese Methode erwitert die Groesse der HashTabelle indem ein neues Feld angelegt wird.
-	 * Es müssen alle Elemente erneut eingefuegt werden.
+	 * Es muessen alle Elemente erneut eingefuegt werden.
 	 */
 	private void doubleSize() {
 		ArrayList<K>[] temp = createArray(data.length * FACTOR);
@@ -116,7 +116,7 @@ public class MyHashSet<K> {
 	}
 
 	/**
-	 * Diese Methode fügt einem uebergebenen HashSet ein neues Element hinzu.
+	 * Diese Methode fuegt einem uebergebenen HashSet ein neues Element hinzu.
 	 * @param element Das Element welches hinzugefuegt werden soll.
 	 * @param hashMap Die HashTabelle wo ein Element hinzuefuegt werden soll.
 	 * @return {@code true} Wenn das Element bereits existriert, sonst {@code false}
@@ -138,7 +138,7 @@ public class MyHashSet<K> {
 	}
 
 	/**
-	 * Die Methode liefert den Hash-Wert für ein Element gemaess der definierten
+	 * Die Methode liefert den Hash-Wert fuer ein Element gemaess der definierten
 	 * HashFunktion welche die Groesse des Feldes benoetigt.
 	 * @param element Das Element von dem der Hash-Wert berechnet werden soll.
 	 * @param size Die Groesse der Hash-Tabelle.
@@ -153,7 +153,7 @@ public class MyHashSet<K> {
 	 * @param length Die Groesse des zu erzeugenden Arrays.
 	 * @return Ein {@code ArrayList<K>[]} mit der angegebenen Groesse.
 	 */
-	@SuppressWarnings("unchecked") // Java unterstruetzt leider immer noch keine Arrays für generische Typen.
+	@SuppressWarnings("unchecked") // Java unterstruetzt leider immer noch keine Arrays fuer generische Typen.
 	private  ArrayList<K>[] createArray(int length) {
 		return (ArrayList<K>[]) new ArrayList[length];
 	}
