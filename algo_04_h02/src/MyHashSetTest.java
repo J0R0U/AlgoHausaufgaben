@@ -10,7 +10,7 @@ import java.util.Collections;
 public class MyHashSetTest {
 	
 	/**
-	 * Die main-Methode welche die Tests ausführt.
+	 * Die main-Methode welche die Tests ausfuehrt.
 	 * @param args Die Kommandozeilenparameter.
 	 */
 	public static void main(String[] args) {
