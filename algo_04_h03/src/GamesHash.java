@@ -1,6 +1,6 @@
 
 /**
- * Diese Klasse implementiert eine HashTabelle mit doppeltem Hashing für Strings.
+ * Diese Klasse implementiert eine HashTabelle mit doppeltem Hashing fÃ¼r Strings.
  * 
  * @author Maxime, Dominik, Jonas
  * @version V01.01B00
@@ -16,7 +16,7 @@ public class GamesHash {
 	private String data[];
 
 	/**
-	 * Der Konstruktor für Objeke der Klasse GamesHash.
+	 * Der Konstruktor fÃ¼r Objeke der Klasse GamesHash.
 	 */
 	GamesHash() {
 		data = new String[SIZE];
@@ -37,7 +37,7 @@ public class GamesHash {
 	}
 
 	/**
-	 * Diese Methode prueft ob ein Strin in der Hash Tabelle ist.
+	 * Diese Methode prueft ob ein String in der Hash Tabelle ist.
 	 * @param game Der String fuer welchen geprueft werden soll ob er in der Hash Tabelle ist.
 	 * @return {@code true}, wenn er vorhanden ist, sonst {@code false}
 	 */
@@ -49,7 +49,7 @@ public class GamesHash {
 
 	/**
 	 * Diese Methode sucht den naechsten freien Index fuer einen String. Wenn der String existiert wird der
-	 * Index desselben zurueckgegeben, und wenn kein freier Index gefunden wird, wird der Startindex zuruek gegeben.
+	 * Index desselben zurueckgegeben, und wenn kein freier Index gefunden wird, wird der Startindex zurueck gegeben.
 	 * @param game Der String zu welchem ein passender Index ermittelt werden soll.
 	 * @return Der ermittelte Index.
 	 */
