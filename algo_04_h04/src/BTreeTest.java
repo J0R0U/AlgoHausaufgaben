@@ -1,11 +1,13 @@
 /**
+ * Diese Klasse testet die BTree Klasse.
  * 
- *
+ * @author Maxime, Dominik, Jonas
+ * @version V01.01B00
  */
 public class BTreeTest {
 	/**
-	 * 
-	 * @param args
+	 * Die main-Methode welche die Tests ausfuehrt.
+	 * @param args Die Kommandozeilenparameter.
 	 */
 	public static void main(String[] args) {
 		BTree btree = new BTree();
