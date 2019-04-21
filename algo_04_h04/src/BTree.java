@@ -40,7 +40,7 @@ public class BTree {
 	 * Die Methode fuegt dem Baum einen Wert hinzu.
 	 * @param x Der Wert der hinzugefuegt werden soll.
 	 * @return {@code 0}, wenn der Inhalt einfach eingefuegt werden konnte,
-	 *         {@code 1} wenn eine neuer Knoten erstellt werden musste und
+	 *         {@code 1} wenn ein neuer Knoten erstellt werden musste und
 	 *         {@code 2} wenn eine neue Wurzel erzeugt wurde.
 	 */
 	public int insert(int x) {
@@ -71,7 +71,7 @@ public class BTree {
 		private BTreeNode parent;
 
 		/**
-		 * Der Konstruktor für Objekte der Klasse BTreeNode.
+		 * Der Konstruktor fÃ¼r Objekte der Klasse BTreeNode.
 		 */
 		public BTreeNode() {
 			values   = new ArrayList<>();
@@ -80,8 +80,8 @@ public class BTree {
 		}
 		
 		/**
-		 * Diese Methode sucht nach einem Wert. Wenn der Wert nich in den eigenen Werten
-		 * gefunden wird rekursiv die Methode für das entsprechende Kind aufgerufen.
+		 * Diese Methode sucht nach einem Wert. Wenn der Wert nicht in den eigenen Werten
+		 * gefunden wird rekursiv die Methode fÃ¼r das entsprechende Kind aufgerufen.
 		 * @param x Der Wert nach dem gesucht werden soll.
 		 * @return {@code true} Wenn der Wert in diesem oder in einem der Unterknoten existiert, sonst {@code false}
 		 */
@@ -102,9 +102,9 @@ public class BTree {
 
 		/**
 		 * Diese Methode fuegt dem Baum einen Inhalt rekursiv hinzu.
-		 * @param x Der Wert der Hinzugefuegt werden soll.
+		 * @param x Der Wert der hinzugefuegt werden soll.
 		 * @return {@code 0}, wenn der Inhalt einfach eingefuegt werden konnte,
-		 *         {@code 1}, wenn eine neuer Knoten erstellt werden musste und
+		 *         {@code 1}, wenn ein neuer Knoten erstellt werden musste und
 		 *         {@code 2}, wenn eine neue Wurzel erzeugt wurde.
 		 */
 		private int insert(int x) {
@@ -129,7 +129,7 @@ public class BTree {
 		 * als 2n Werte hat, und aufgeteilt werden muss.
 		 * @param currentModifycationStatus 
 		 * @return {@code 0}, wenn der Inhalt einfach eingefuegt werden konnte,
-		 *         {@code 1}, wenn eine neuer Knoten erstellt werden musste und
+		 *         {@code 1}, wenn ein neuer Knoten erstellt werden musste und
 		 *         {@code 2}, wenn eine neue Wurzel erzeugt wurde. 
 		 */
 		private int modifyIfNeeded(int currentModifycationStatus) {
@@ -162,7 +162,7 @@ public class BTree {
 		
 		/**
 		 * Diese Methode gibt das mittlere Element eines ueberbesetzten Knotens zurueck.
-		 * @return Das mitllere Element.
+		 * @return Das mittlere Element.
 		 */
 		private int getMiddleElement() {
 			return values.get(THRESHHOLD);
@@ -170,7 +170,7 @@ public class BTree {
 		
 		/**
 		 * Diese Methode kopiert x Werte aus den Werten dieses Knotens in einen anderen uebergebenen Knoten.
-		 * @param tree Der Knoten dem Hinzugefügt werden soll.
+		 * @param tree Der Knoten der hinzugefÃ¼gt werden soll.
 		 * @param start Der Startpunkt ab dem hinzugefuegt werden soll.
 		 * @param end Der Endpunkt ab dem hinzugefuegt werden soll.
 		 */
@@ -183,7 +183,7 @@ public class BTree {
 		/**
 		 * Diese Methode kopiert x Kinder aus den Kindern dieses Knotens in einen anderen uebergebenen
 		 * Knoten und setzt deren Parent auf den neuen Knoten.
-		 * @param tree Der Knoten dem Hinzugefügt werden soll.
+		 * @param tree Der Knoten der hinzugefÃ¼gt werden soll.
 		 * @param start Der Startpunkt ab dem hinzugefuegt werden soll.
 		 * @param end Der Endpunkt ab dem hinzugefuegt werden soll.
 		 */
