@@ -6,13 +6,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * Diese Klasse ist ein Graph.
+ * 
+ * @author Maxime, Dominik, Jonas
+ * @version V01.01B00
+ */
 public class Graph {
 	ArrayList<Integer>[] adjacencyList;
 	
+	/**
+	 * Das ist ein Konstruktor.
+	 * @param v Die Anzahl an Knoten.
+	 */
 	public Graph(int v) {
 		createArray(v);
 	}
 	
+	/**
+	 * Das ist auch ein Konstruktor.
+	 * @param v Die Anzahl an Knoten.
+	 * @param e Die Anzahl an Kanten.
+	 */
 	public Graph(int v, int e) {
 		createArray(v);
 		
@@ -38,6 +53,10 @@ public class Graph {
 		
 	}
 	
+	/**
+	 * Das ist ein weiterer Konstruktor.
+	 * @param list Eine Kantenliste.
+	 */
 	public Graph(int[] list) {
 		createArray(list[0]);
 		
@@ -46,6 +65,11 @@ public class Graph {
 		}
 	}
 	
+	/**
+	 * Das ist jetzt aber wirklich der letzte Konstruktor.
+	 * @param in Eine Kantenliste
+	 * @throws IOException Wenn der Inputstream nicht gelesen werden kann.
+	 */
 	public Graph(InputStream in) throws IOException {
 		ArrayList<Edge<Integer, Integer>> givenEdges = new ArrayList<>();
 		createArray(accumulateData(in, givenEdges));
@@ -55,10 +79,18 @@ public class Graph {
 		}
 	}
 	
+	/**
+	 * Gibt die Anzahl an Knoten zurueck.
+	 * @return Die Anzahl an Knoten.
+	 */
 	public int getVertexCount() {
 		return adjacencyList.length - 1;
 	}
 	
+	/**
+	 * Gibt die Anzahl an Kanten zurueck.
+	 * @return Die Anzahl an Kanten.
+	 */
 	public int getEdgeCount() {
 		int ret = 0;
 		
@@ -69,6 +101,12 @@ public class Graph {
 		return ret;
 	}
 	
+	/**
+	 * Prueft ob eine Kante zwischen zwei Knoten existiert.
+	 * @param from Knoten eins.
+	 * @param to Knoten zwei.
+	 * @return {@code true} wenn eine Kante existiert, sonst {@code false}
+	 */
 	public boolean hasEdge(int from, int to) {
 		if(!validVertex(from) || !validVertex(to)) {
 			throw new RuntimeException("One of the given vertices does not exist.");
@@ -77,6 +115,11 @@ public class Graph {
 		return !(Collections.binarySearch(adjacencyList[from], to) < 0);
 	}
 	
+	/**
+	 * Fuegt eine Kante zwischen zwei Knoten hinzu.
+	 * @param from Knoten eins.
+	 * @param to Knoten zwei.
+	 */
 	public void addEdge(int from, int to) {
 		if(!validVertex(from) || !validVertex(to)) {
 			throw new RuntimeException("One of the given vertices does not exist.");
@@ -92,6 +135,11 @@ public class Graph {
 		adjacencyList[from].add(newIndex, to);
 	}
 	
+	/**
+	 * Gibt alle Nachbarn eines Knotens zurueck.
+	 * @param v Der Knoten dessen Nachbarn ermittelt werden sollen.
+	 * @return Die Nachbarn des Knotens.
+	 */
 	public ArrayList<Integer> getAdjacent(int v) {
 		if(!validVertex(v)) {
 			throw new RuntimeException("The vertex " + v + " does not exists.");
@@ -100,21 +148,11 @@ public class Graph {
 		return adjacencyList[v];
 	}
 	
-	public String toString() {
-		StringBuilder ret = new StringBuilder();
-		
-		ret.append("[");
-		
-		for(int i = 1; i < adjacencyList.length; ++i) {
-			ret.append(" ");
-			ret.append(adjacencyList[i]);
-		}
-		
-		ret.append(" ]");
-		
-		return ret.toString();
-	}
-	
+	/**
+	 * Die Tiefensuche.
+	 * @param start Der Startknoten.
+	 * @return Eine Liste mit allen Knoten die erreicht wurden.
+	 */
 	public ArrayList<Integer> dfs(int start){
 		if(!validVertex(start)) {
 			throw new RuntimeException("The vertex " + start + " does not exists.");
@@ -144,6 +182,11 @@ public class Graph {
 		return ret;
 	}
 	
+	/**
+	 * Die Breitensuche.
+	 * @param start Der Startknoten.
+	 * @return Eine Liste mit allen Knoten die erreicht wurden.
+	 */
 	public ArrayList<Integer> bfs(int start){
 		if(!validVertex(start)) {
 			throw new RuntimeException("The vertex " + start + " does not exists.");
@@ -172,6 +215,26 @@ public class Graph {
 		return ret;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder ret = new StringBuilder();
+		
+		ret.append("[");
+		
+		for(int i = 1; i < adjacencyList.length; ++i) {
+			ret.append(" ");
+			ret.append(adjacencyList[i]);
+		}
+		
+		ret.append(" ]");
+		
+		return ret.toString();
+	}
+	
+	/**
+	 * Erstellt ein Array mit einer gegebenen Groesse.
+	 * @param size Die Groesse des Arrays.
+	 */
 	@SuppressWarnings("unchecked")
 	private void createArray(int size) {
 		if(size < 0) {
@@ -184,10 +247,22 @@ public class Graph {
 		}
 	}
 	
+	/**
+	 * Prueft ob ein Knoten mit einem Index existiert.
+	 * @param v Der Index des Knotens.
+	 * @return {@code true} wenn er existiert, {@code false}
+	 */
 	private boolean validVertex(int v) {
 		return v >= 1 && v < adjacencyList.length;
 	}
 	
+	/**
+	 * List die Daten aus einem InputStream in eine Liste.
+	 * @param in Der InputStream.
+	 * @param edges Die Liste der Kanten.
+	 * @return Die Anzahl an Knoten in der Liste.
+	 * @throws IOException Wenn ein Problem mit dem Lesen des Streams existieren.
+	 */
 	private static int accumulateData(InputStream in, ArrayList<Edge<Integer, Integer>> edges) throws IOException {
 		int nodeCount = 0;
 	    String line;
@@ -196,13 +271,21 @@ public class Graph {
 	    while( (line = bufferedReader.readLine()) != null ) { 
 	    	nodeCount++;
 	        for(String neighbour : line.split(";")) {
-	        	edges.add(new Edge<Integer, Integer>(nodeCount, Integer.parseInt(neighbour)));
+	        	if(!neighbour.isEmpty()) {
+	        		edges.add(new Edge<Integer, Integer>(nodeCount, Integer.parseInt(neighbour)));
+	        	}
 	        }
 	    }
 	    
 	    return nodeCount;
 	}
 	
+	/**
+	 * Diese Klasse ist eine Kante.
+	 * 
+	 * @author Maxime, Dominik, Jonas
+	 * @version V01.01B00
+	 */
 	private static class Edge<F,T> {
 		F from;
 		T to;
