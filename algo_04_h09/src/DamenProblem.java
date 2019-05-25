@@ -14,6 +14,8 @@ public class DamenProblem {
 	 * @param brettgroesse Groesse des Schachbretts
 	 */
 	public void damenProblem(int brettgroesse) {
+		if(brettgroesse < 1)
+			throw new IllegalArgumentException("Zu kleine Brettgroesse");
 		damenProblem(brettgroesse, new ArrayList<>());
 	}
 	
