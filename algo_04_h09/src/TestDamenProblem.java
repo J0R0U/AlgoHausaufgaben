@@ -1,5 +1,3 @@
-package algo_04_h09;
-
 /**
  * Testklasse fuer das Damenproblem
  * 
