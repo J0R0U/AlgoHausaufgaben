@@ -20,7 +20,7 @@ public class DamenProblem {
 	}
 	
 	/**
-	 * Hilfsmethode für Rekursionsaufrufe. Fuegt, wenn moeglich, eine neue Dame an eine freie Stelle hinzu
+	 * Hilfsmethode fuer Rekursionsaufrufe. Fuegt, wenn moeglich, eine neue Dame an eine freie Stelle hinzu
 	 * und wiederholt diesen Schritt bis das Feld voll ist und gibt die Loesung in der Konsole aus.
 	 * 
 	 * @param brettgroesse Die Groesse des Schachbretts
