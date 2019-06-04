@@ -2,7 +2,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.PatternSyntaxException;
 
+/**
+ * Klasse welche die textSearch Methode beinhaltet.
+ * 
+ * @author Maxime, Dominik, Jonas
+ * @version 1.0
+ */
 public class TextSearch {
+	
+	/**
+	 * Diese Methode prueft an welchen Stellen in einem gegebenen String ein bestimmtes Pattern vorkommt und gibt diese in einer Liste zurueck.
+	 * @param text Der Text in dem nach einem Pattern gesucht werden soll.
+	 * @param pattern Das Pattern mit dem in dem Text gesucht werden soll.
+	 * @return Eine {@code ArrayList<Integer>} welche die Positionen der Uebereinstimmungen zurueck gibt.
+	 */
 	public static ArrayList<Integer> textSearch(String text, String pattern) {
 		ArrayList<Integer> ret = new ArrayList<>();
 		ArrayList<Token> tokenisedPattern = generateTokenPattern(pattern);
@@ -24,6 +37,12 @@ public class TextSearch {
 		return ret;
 	}
 	
+	/**
+	 * Diese Methode generiert aus einem String-Pattern ein Token-Pattern und ueberprueft diese gleichzeitig. 
+	 * @param pattern Das String-Pattern welches umgewandelt werden soll.
+	 * @return Das resultierende Token-Pattern.
+	 * @throws Eine {@code PatternSyntaxException} wenn das gegebene String-Pattern nicht den Anforderungen entspricht.
+	 */
 	private static ArrayList<Token> generateTokenPattern(String pattern) {
 		ArrayList<Token> ret = new ArrayList<>();
 		
@@ -111,6 +130,11 @@ public class TextSearch {
 		return ret;
 	}
 
+	/**
+	 * Diese Methode generiert aus einem Token-Pattern eine Positionstabelle.
+	 * @param tokenisedPattern Das Pattern aus welchem die Tabelle generiert werden soll.
+	 * @return Die aus dem Pattern generierte Tabelle.
+	 */
 	private static UsageTable generateUsageTable(ArrayList<Token> tokenisedPattern) {
 		UsageTable ret = new UsageTable();
 		
@@ -136,6 +160,13 @@ public class TextSearch {
 		return ret;
 	}
 	
+	/**
+	 * Diese Methode prueft ob ein String ab einer gegebenen Position mit einem Pattern uebereinstimmt.
+	 * @param text Der String der ueberprueft werden soll.
+	 * @param start Der Startindex ab welchem gesucht werden soll.
+	 * @param pattern Das Pattern auf das ueberprueft werden soll.
+	 * @return {@code true} wenn es sich um einen Treffer handelt, sonst {@code false}.
+	 */
 	private static boolean isMatch(String text, int start, ArrayList<Token> pattern) {
 		boolean ret = true;
 		
@@ -149,49 +180,103 @@ public class TextSearch {
 		return ret;
 	}
 	
+	/**
+	 * Diese Klasse repraesentiert einen Teil eines regulaeren Ausdrucks als Token.
+	 * 
+	 * @author Maxime, Dominik, Jonas
+	 * @version 1.0
+	 */
 	private static abstract class Token {
+		/**
+		 * Prueft ob dieses Token gleich einem gegebenen Zeichen ist.
+		 * @param c Das Zeichen gegen das geprueft werden soll.
+		 * @return {@code true} wenn das Zeichen von dem Token repraesentiert wird, sonst {@code false}.
+		 */
 		public abstract boolean matches(Character c);
 	}
 	
+	/**
+	 * Diese Klasse repraesentiert ein Zeichen als Token.
+	 * 
+	 * @author Maxime, Dominik, Jonas
+	 * @version 1.0
+	 */
 	private static class OneChar extends Token {
 		final Character data;
 		
+		/**
+		 * Konstruktor fuer Objekte der Klasse.
+		 * @param c Das Zeichen welches von diesem Token vertreten wird.
+		 */
 		public OneChar(Character c) {
 			data = c;
 		}
 		
+		@Override
 		public boolean matches(Character c) {
 			return data.equals(c);
 		}
 	}
 	
+	/**
+	 * Diese Klasse repraesentiert alle Zeichen als Token.
+	 * 
+	 * @author Maxime, Dominik, Jonas
+	 * @version 1.0
+	 */
 	private static class AllChars extends Token {
+		
+		@Override
 		public boolean matches(Character c) {
 			return true;
 		}
 	}
 	
+	/**
+	 * Diese Klasse repraesentiert mehrere Zeichen als Token.
+	 * 
+	 * @author Maxime, Dominik, Jonas
+	 * @version 1.0
+	 */
 	private static class CharacterClass extends Token {
 		final ArrayList<Character> data;
 		
+		/**
+		 * Der Konstruktor fuer Objekte der Klasse CharacterClass.
+		 */
 		public CharacterClass() {
 			data = new ArrayList<>();
 		}
 		
+		@Override
 		public boolean matches(Character c) {
 			return data.contains(c);
 		}
 	}
 	
+	/**
+	 * Diese Klasse beinhaltet eine Tabelle welche die letzte Position eines Zeichens behaelt um den Boyer-Moore-Sunday umzusetzen.
+	 * 
+	 * @author Maxime, Dominik, Jonas
+	 * @version 1.0
+	 */
 	private static class UsageTable {
 		private int others;
 		private HashMap<Character, Integer> table;
 		
+		/**
+		 * Der Konstruktor fuer Objekte der Klasse UsageTable.
+		 */
 		public UsageTable() {
 			others = -1;
 			table = new HashMap<>();
 		}
 		
+		/**
+		 * Prueft an welcher Stelle dieses Zeichen in dem Pattern vorkommt.
+		 * @param c Das Zeichen dessen Index zurueckgegeben werden soll.
+		 * @return Die Position des Zeichens im Pattern.
+		 */
 		public int getNumber(Character c) {
 			if(table.containsKey(c)) {
 				return table.get(c);
